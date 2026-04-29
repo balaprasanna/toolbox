@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "claude-toolbox"
+version = "0.5.2"
+description = "Channel-agnostic tool library for Claude agents: fs, search, intro, git, github, web, notebook, code, shell, edit, extended modules + a unified Tool/ToolRegistry abstraction. Pip installs as `claude-toolbox`, imports as `toolbox`."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Proprietary" }
+authors = [
+    { name = "Bala Prasanna Veerapandi", email = "balaprasannav2009@gmail.com" },
+]
+keywords = ["llm", "anthropic", "claude", "tools", "agent"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+# Runtime Python deps. Some modules also shell out to system binaries
+# (rg / ast-grep / git) — install those via your platform's package manager
+# or conda-forge. See README → "System binaries used by some tools".
+dependencies = [
+    "fastcore>=1.12",
+    "toolslm>=0.3",
+    "pyskills>=0.0.6",
+    "ast-grep-py>=0.42",
+    "ghapi>=1.0",
+    "msglm>=0.0",
+    "httpx>=0.24",
+    "beautifulsoup4>=4.12",
+    "PyYAML>=6.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/balaprasanna/toolbox"
+Repository = "https://github.com/balaprasanna/toolbox"
+Issues = "https://github.com/balaprasanna/toolbox/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["toolbox"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "toolbox/",
+    "README.md",
+    "pyproject.toml",
+]
